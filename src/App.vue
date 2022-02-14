@@ -1,28 +1,40 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+    <div>Hello</div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import { defineComponent } from '@vue/composition-api'
+import { defineStore } from 'pinia'
 
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+export const useStoreB = defineStore({
+    id: 'storeB',
+    state: () => ({
+        data: null,
+    }),
+    actions: {
+        init() {
+            this.data = ''
+        },
+    },
+})
+
+export const useStoreC = defineStore({
+    id: 'storeC',
+    state: () => ({
+        data: null,
+    }),
+    actions: {
+        init() {
+            this.data = ''
+        },
+    },
+})
+
+export default defineComponent({
+    name: 'App',
+    setup() {
+        useStoreB().init()
+        useStoreC().init()
+    },
+})
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
